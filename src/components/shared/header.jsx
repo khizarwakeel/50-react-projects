@@ -17,7 +17,7 @@ const Header = () => {
                         <span className="ml-3 md:text-2xl font-semibold text-gray-800">React 25 Projects</span>
                     </div>
                     <Link to={'https://khizarwakeel.vercel.app'} target="_blank">
-                        <h1 className="md:text-xl text text-gray-700">Khizar Wakeel</h1>
+                        <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-[#017fa5] focus:z-10 focus:ring-4 focus:ring-gray-100 ">Khizar Wakeel</button>
                     </Link>
                 </div>
             </Wrapper>
