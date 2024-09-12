@@ -3,8 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/routes/home';
 import NotFound from './components/routes/notFount';
-import Accordian from './projects/accordian';
 import Footer from './components/shared/footer';
+import Accordian from './projects/accordian';
 
 const App = () => {
   return (
