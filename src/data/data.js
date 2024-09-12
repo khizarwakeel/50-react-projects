@@ -3,7 +3,7 @@
 
 export const projectsData = [
     {
-        thumbnail: '/assets/demoImage.jpeg',
+        thumbnail: '/assets/accordian.JPG',
         title: "Accordian",
         link: "/accordian"
     },
