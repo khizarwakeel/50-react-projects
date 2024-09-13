@@ -37,7 +37,7 @@ const Accordian = () => {
                     {
                         accordianData && accordianData.length > 0 ? accordianData.map((item, index) => (
                             <div className='max-w-2xl mx-auto' key={index}>
-                                <div onClick={enableMultiSelection ? () => handleMultiselection(item.id) : () => handleSingleSelection(item.id)} className={`cursor-pointer border-gray-200 ${selected === item.id && "border-b"} flex bg-gray-100 justify-between font-medium items-center p-5 border border-b-0 ${accordianData.length - 1 === index ? "border-b" : ""}`}>
+                                <div onClick={enableMultiSelection ? () => handleMultiselection(item.id) : () => handleSingleSelection(item.id)} className={`cursor-pointer border-gray-200  flex bg-gray-100 justify-between font-medium items-center p-5 border ${accordianData.length - 1 === index ? "border-b" : "border-b-0"}`}>
                                     <h3 className='md:text-base text-sm'>{item.question}</h3>
                                     <span>
                                         {
@@ -55,9 +55,9 @@ const Accordian = () => {
                                 </div>
                                 {
                                     enableMultiSelection ? multiple.indexOf(item.id) !== -1 && (
-                                        <p className={`p-5 border md:text-base text-sm border-gray-200 border-t-0 border-b-0 ${accordianData.length - 1 === index ? "border-b" : ""}`}>{item.answer}</p>
+                                        <p className={`p-5 border md:text-base text-sm border-gray-200 ${accordianData.length - 1 === index ? "border-b border-t-0" : "border-b-0"}`}>{item.answer}</p>
                                     ) :
-                                        selected === item.id && (<p className={`p-5 border md:text-base text-sm border-gray-200 border-t-0 border-b-0 ${accordianData.length - 1 === index ? "border-b" : ""}`}>{item.answer}</p>)
+                                        selected === item.id && (<p className={`p-5 border md:text-base text-sm border-gray-200 ${accordianData.length - 1 === index ? "border-b border-t-0" : "border-b-0"}`}>{item.answer}</p>)
                                 }
                             </div>
                         )) : <div>No Data Found!</div>
