@@ -59,14 +59,14 @@ const RandomColor = () => {
                         <div className='flex md:flex-row flex-col justify-center gap-4'>
                             <Button
                                 onClick={() => setTypeOfColor('hex')}
-                                classes={`${typeOfColor === 'hex' ? 'bg-red-700 text-white' : 'bg-[#017fa5]'
-                                    } hover:text-white text-white hover:bg-red-500`}>
+                                classes={`${typeOfColor === 'hex' ? '!bg-red-700 !text-white' : '!bg-[#017fa5]'
+                                    } !hover:text-white !text-white !hover:bg-red-500`}>
                                 Create HEX Color
                             </Button>
                             <Button
                                 onClick={() => setTypeOfColor('rgb')}
-                                classes={`${typeOfColor === 'rgb' ? 'bg-red-700 text-white' : 'bg-[#017fa5]'
-                                    } hover:text-white text-white hover:bg-red-500`}>
+                                classes={`${typeOfColor === 'rgb' ? '!bg-red-700 !text-white' : '!bg-[#017fa5]'
+                                    } !hover:text-white !text-white !hover:bg-red-500 !bg-[#017fa5]`}>
                                 Create RGB Color
                             </Button>
                             <Button onClick={typeOfColor === 'hex' ? handleCreateRandomHexColor : handleCreateRandomRgbColor} classes={"!bg-[#017fa5] !focus:ring-blue-100 !text-white"}>Create Random Color</Button>
