@@ -7,6 +7,11 @@ export const projectsData = [
         title: "Accordian",
         link: "/accordian"
     },
+    {
+        thumbnail: '/assets/randomColor.JPG',
+        title: "Random Color Generator",
+        link: "/random-color"
+    },
 ]
 
 // Accordian Data

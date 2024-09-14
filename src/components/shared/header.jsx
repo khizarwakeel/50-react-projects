@@ -15,7 +15,7 @@ const Header = () => {
                                 className="md:w-16 w-12"
                             />
                         </Link>
-                        <span className="ml-3 md:text-2xl text-sm font-semibold text-gray-800">React 25 Projects</span>
+                        <span className="ml-3 md:text-2xl text-sm font-semibold text-gray-800">50 React Projects</span>
                     </div>
                     <div>
                         <Link to={'https://khizarwakeel.vercel.app'} target="_blank">

@@ -1,1 +1,1 @@
-React 25 Fully Functional and Logical Projects
+50 React Fully Functional and Logical Projects

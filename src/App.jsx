@@ -5,6 +5,7 @@ import Home from './components/routes/home';
 import NotFound from './components/routes/notFount';
 import Footer from './components/shared/footer';
 import Accordian from './projects/accordian';
+import RandomColor from './projects/randomColor';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/accordian" element={<Accordian />} />
+            <Route path="/random-color" element={<RandomColor />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
