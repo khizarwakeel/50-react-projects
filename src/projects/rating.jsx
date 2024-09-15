@@ -64,6 +64,7 @@ const Rating = ({ noOfStars = 5 }) => {
                                         onClick={() => handleClick(index)}
                                         onMouseEnter={() => handleMouseEnter(index)}
                                         onMouseLeave={handleMouseLeave}
+                                        title={getRatingText(index)}
                                         size={40}
                                         className={index <= (hover || rating) ? 'text-yellow-500 duration-300 cursor-pointer' : 'text-gray-600 duration-300 cursor-pointer'}
                                     />
