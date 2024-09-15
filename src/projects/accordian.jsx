@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Wrapper from '../components/shared/wrapper'
 import { accordianData } from '../data/data'
 import Button from '../components/shared/Button';
+import { Link } from 'react-router-dom';
 
 const Accordian = () => {
 
@@ -27,6 +28,15 @@ const Accordian = () => {
     return (
         <section>
             <Wrapper>
+                {/* Back to Home */}
+                <div className='flex mt-10 hover:text-[#017fa5] duration-300'>
+                    <Link className='flex items-center' to="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                        <span>Back to home</span>
+                    </Link>
+                </div>
                 <div className='text-center mt-10 md:text-4xl text-2xl'>
                     <h1>Accordian</h1>
                 </div>

@@ -9,7 +9,7 @@ const Home = () => {
                 <div>
                     <h1 className="text-center md:py-10 py-7 lg:text-4xl text-3xl font-bold text-[#017fa5]">50 React Projects</h1>
                 </div>
-                <div className="grid lg:grid-cols-3 gap-5 md:grid-cols-2 grid-cols-1 md:pb-10 pb-7">
+                <div className="grid lg:grid-cols-3 lg:gap-5 md:gap-16 gap-10 md:grid-cols-2 grid-cols-1 md:pb-10 pb-7">
                     {projectsData.map((item, index) => (
                         <div>
                             <div key={index} className="relative group">
