@@ -17,6 +17,11 @@ export const projectsData = [
         title: "Rating",
         link: "/rating"
     },
+    {
+        thumbnail: '/assets/placeholder.jpg',
+        title: "Slider",
+        link: "/slider"
+    },
 ]
 
 // Accordian Data
