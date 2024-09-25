@@ -1,5 +1,5 @@
-import Wrapper from '../components/shared/wrapper'
-import { Link } from 'react-router-dom'
+import Wrapper from '../components/shared/wrapper';
+import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { useState } from 'react';
 
@@ -10,7 +10,7 @@ const Rating = ({ noOfStars = 5 }) => {
     const [ratingText, setRatingText] = useState("");
 
     const getRatingText = (currentIndex) => {
-        switch (currentIndex) {
+        switch (Math.ceil(currentIndex)) {
             case 1:
                 return "Worst";
             case 2:
@@ -39,6 +39,14 @@ const Rating = ({ noOfStars = 5 }) => {
         setHover(rating);
     };
 
+    const handleMouseMove = (event, starIndex) => {
+        const { left, width } = event.target.getBoundingClientRect();
+        const x = event.clientX - left;
+        const isHalf = x < width / 2;
+        const currentRating = isHalf ? starIndex - 0.5 : starIndex;
+        setHover(currentRating);
+    };
+
     return (
         <section>
             <Wrapper>
@@ -60,18 +68,35 @@ const Rating = ({ noOfStars = 5 }) => {
                             {
                                 [...Array(noOfStars)].map((_, index) => {
                                     index += 1;
-                                    return <FaStar key={index}
-                                        onClick={() => handleClick(index)}
-                                        onMouseEnter={() => handleMouseEnter(index)}
-                                        onMouseLeave={handleMouseLeave}
-                                        title={getRatingText(index)}
-                                        size={40}
-                                        className={index <= (hover || rating) ? 'text-yellow-500 duration-300 cursor-pointer' : 'text-gray-600 duration-300 cursor-pointer'}
-                                    />
+                                    return (
+                                        <div
+                                            key={index}
+                                            onClick={() => handleClick(hover)}
+                                            onMouseEnter={() => handleMouseEnter(index)}
+                                            onMouseMove={(event) => handleMouseMove(event, index)}
+                                            onMouseLeave={handleMouseLeave}
+                                            style={{ cursor: 'pointer', position: 'relative', width: '40px' }}
+                                        >
+                                            <FaStar
+                                                size={40}
+                                                className={index <= Math.floor(hover) ? 'text-yellow-500' : 'text-gray-600'}
+                                                style={{ position: 'absolute', left: 0 }}
+                                            />
+                                            {
+                                                hover === index - 0.5 && (
+                                                    <FaStar
+                                                        size={40}
+                                                        className="text-yellow-500"
+                                                        style={{ position: 'absolute', clipPath: 'inset(0 50% 0 0)', left: 0 }}
+                                                    />
+                                                )
+                                            }
+                                        </div>
+                                    )
                                 })
                             }
                         </div>
-                        <div className='mt-10 text-center md:text-2xl text-xl flex flex-col justify-center gap-2'>
+                        <div className='mt-14 text-center md:text-2xl text-xl flex flex-col justify-center gap-2'>
                             <h3>You got <span className='font-bold text-yellow-700'>{rating}</span> star rating!</h3>
                             {
                                 ratingText && (
