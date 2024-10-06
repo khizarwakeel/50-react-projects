@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import Wrapper from '../components/shared/wrapper'
+import Wrapper from '../components/shared/wrapper';
 import { useEffect, useState } from 'react';
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
 
 const Slider = ({ url, limit = 5, page }) => {
-
     const [images, setImages] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -12,48 +11,57 @@ const Slider = ({ url, limit = 5, page }) => {
 
     const fetchImages = async (getUrl) => {
         try {
-            setLoading(true)
+            setLoading(true);
             const response = await fetch(`${getUrl}?page=${page}&limit=${limit}`);
             const data = await response.json();
             if (data) {
-                setImages(data)
-                setLoading(false)
+                setImages(data);
+                setLoading(false);
             }
         } catch (error) {
-            setErrorMessage(error.message)
-            setLoading(false)
+            setErrorMessage(error.message);
+            setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
         if (url !== '') {
-            fetchImages(url)
+            fetchImages(url);
         }
-    }, [url])
+    }, [url]);
 
-    console.log(images, "Images")
+    const handlePrevious = () => {
+        setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
+    };
+
+    const handleNext = () => {
+        setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
+    };
 
     return (
         <section>
             <Wrapper>
                 {/* Back to Home */}
-                <div className='flex mt-10 hover:text-[#017fa5] duration-300'>
-                    <Link className='flex items-center' to="/">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                <div className="flex mt-10 hover:text-[#017fa5] duration-300">
+                    <Link className="flex items-center" to="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mr-2">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                         </svg>
                         <span>Back to home</span>
                     </Link>
                 </div>
-                <div className='my-10 max-w-4xl mx-auto bg-gray-200 rounded-xl shadow'>
-                    <div className='py-5 px-4'>
-                        <div className='text-center py-4'>
-                            <h1 className='md:text-5xl text-2xl'>Slider</h1>
+
+                <div className="my-10 max-w-4xl mx-auto bg-gray-200 rounded-xl shadow-lg">
+                    <div className="py-5 px-4">
+                        <div className="text-center py-4">
+                            <h1 className="md:text-5xl text-2xl">Slider</h1>
                         </div>
                     </div>
+
+                    {/* Loading and Error Messages */}
                     <>
                         {loading && (
-                            <div role="status" className='flex justify-center pb-10'>
+                            <div role="status" className="flex justify-center pb-10">
                                 <svg
                                     aria-hidden="true"
                                     className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -73,35 +81,48 @@ const Slider = ({ url, limit = 5, page }) => {
                                 <span className="sr-only">Loading...</span>
                             </div>
                         )}
-                        {
-                            errorMessage && (
-                                <div className='max-w-96 text-center mx-auto pb-5'>
-                                    <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                                        <span className="font-medium">Error occured!</span> {errorMessage}
-                                    </div>
-                                </div>
-                            )
-                        }
-                    </>
-                    {
-                        loading === false ? (
-                            <div>
-                                <div>
-                                    <BsArrowLeftCircleFill />
-                                </div>
-                                {
-                                    images && images.length ? (
-                                        images.map((image) => (
-                                            <div key={image.id}><img src={image.download_url} alt={image.download_url} /></div>
-                                        ))
-                                    ) : null
-                                }
-                                <div>
-                                    <BsArrowRightCircleFill />
+
+                        {errorMessage && (
+                            <div className="max-w-96 text-center mx-auto pb-5">
+                                <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                    <span className="font-medium">Error occurred!</span> {errorMessage}
                                 </div>
                             </div>
-                        ) : null
-                    }
+                        )}
+                    </>
+
+                    {/* Slider Logic */}
+                    {!loading && images.length > 0 && (
+                        <div className="relative">
+                            <div className="flex justify-center items-center">
+                                <BsArrowLeftCircleFill onClick={handlePrevious} className="text-3xl cursor-pointer text-blue-600 mx-2" />
+
+                                {/* Display only current slide */}
+                                {images.map((image, index) => (
+                                    <div key={image.id} className={`${currentSlide === index ? 'block' : 'hidden'} transition-opacity duration-500`}>
+                                        <img
+                                            src={image.download_url}
+                                            alt={`Slide ${index}`}
+                                            className="rounded-xl w-[50rem] h-96 object-cover"
+                                        />
+                                    </div>
+                                ))}
+
+                                <BsArrowRightCircleFill onClick={handleNext} className="text-3xl cursor-pointer text-blue-600 mx-2" />
+                            </div>
+
+                            {/* Slide Indicator Dots */}
+                            <div className="flex justify-center py-3 space-x-2">
+                                {images.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentSlide(index)}
+                                        className={`w-4 h-4 rounded-full ${currentSlide === index ? 'bg-blue-600' : 'bg-gray-400'} transition-colors duration-300`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </Wrapper>
         </section>
