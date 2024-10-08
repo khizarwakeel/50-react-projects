@@ -18,7 +18,7 @@ export const projectsData = [
         link: "/rating"
     },
     {
-        thumbnail: '/assets/placeholder.jpg',
+        thumbnail: '/assets/slider.JPG',
         title: "Slider",
         link: "/slider"
     },

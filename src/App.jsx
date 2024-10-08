@@ -20,7 +20,7 @@ const App = () => {
             <Route path="/accordian" element={<Accordian />} />
             <Route path="/random-color" element={<RandomColor />} />
             <Route path="/rating" element={<Rating noOfStars={5} />} />
-            <Route path="/slider" element={<Slider url={'https://picsum.photos/v2/list'} limit={10} page={10} />} />
+            <Route path="/slider" element={<Slider url={'https://picsum.photos/v2/list'} limit={10} page={22} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
