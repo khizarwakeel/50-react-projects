@@ -29,8 +29,8 @@ const Accordian = () => {
         <section>
             <Wrapper>
                 {/* Back to Home */}
-                <div className='flex mt-10 hover:text-[#017fa5] duration-300'>
-                    <Link className='flex items-center' to="/">
+                <div className='flex mt-10'>
+                    <Link className='flex items-center hover:text-[#017fa5] duration-300' to="/">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
@@ -51,15 +51,18 @@ const Accordian = () => {
                                     <h3 className='md:text-base text-sm'>{item.question}</h3>
                                     <span>
                                         {
-                                            selected === item.id ? (
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-gray-500">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
-                                                </svg>
-                                            ) : (
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-gray-500">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                                </svg>
-                                            )
+                                            (enableMultiSelection
+                                                ? multiple.indexOf(item.id) !== -1
+                                                : selected === item.id)
+                                                ? (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-gray-500">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+                                                    </svg>
+                                                ) : (
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-gray-500">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                                    </svg>
+                                                )
                                         }
                                     </span>
                                 </div>
