@@ -14,7 +14,7 @@ const RandomColor = () => {
     };
 
     const handleCreateRandomHexColor = () => {
-        const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
+        const hex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
         let hexColor = '#';
         for (let i = 0; i < 6; i++) {
             hexColor += hex[randomColorUtility(hex.length)];
@@ -26,7 +26,7 @@ const RandomColor = () => {
         const r = randomColorUtility(256);
         const g = randomColorUtility(256);
         const b = randomColorUtility(256);
-        setColor(`rgb(${r},${g},${b})`);
+        setColor(`rgb(${r}, ${g}, ${b})`);
     };
 
     const handleCopyColor = () => {
@@ -49,9 +49,9 @@ const RandomColor = () => {
     return (
         <section>
             <Wrapper>
-                  {/* Back to Home */}
-                  <div className='flex mt-10 hover:text-[#017fa5] duration-300'>
-                    <Link className='flex items-center' to="/">
+                {/* Back to Home */}
+                <div className='flex mt-10'>
+                    <Link className='flex items-center hover:text-[#017fa5] duration-300' to="/">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
