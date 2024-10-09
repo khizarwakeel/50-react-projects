@@ -3,14 +3,13 @@ import Wrapper from '../components/shared/wrapper';
 import { useEffect, useState } from 'react';
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
 
-const Slider = ({ url, limit = 5, page, autoplayInterval = 3000 }) => {
+const Slider = ({ url, limit = 5, page }) => {
     const [images, setImages] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // Placeholder image for loading
-    const placeholderImage = "https://via.placeholder.com/800x600?text=Loading...";
+    const placeholderImage = "https://via.placeholder.com/800x600?text=Image is loading...";
 
     const fetchImages = async (getUrl) => {
         try {
@@ -33,16 +32,15 @@ const Slider = ({ url, limit = 5, page, autoplayInterval = 3000 }) => {
         }
     }, [url]);
 
-    // Autoplay functionality
     useEffect(() => {
         if (images.length > 0) {
             const interval = setInterval(() => {
                 handleNext();
-            }, autoplayInterval);
+            }, 5000);
 
-            return () => clearInterval(interval); // Cleanup interval on component unmount
+            return () => clearInterval(interval);
         }
-    }, [currentSlide, images, autoplayInterval]);
+    }, [currentSlide, images]);
 
     const handlePrevious = () => {
         setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
@@ -56,8 +54,8 @@ const Slider = ({ url, limit = 5, page, autoplayInterval = 3000 }) => {
         <section>
             <Wrapper>
                 {/* Back to Home */}
-                <div className="flex mt-10 hover:text-[#017fa5] duration-300">
-                    <Link className="flex items-center" to="/">
+                <div className="flex mt-10">
+                    <Link className="flex items-center hover:text-[#017fa5] duration-300" to="/">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mr-2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                         </svg>
@@ -75,12 +73,12 @@ const Slider = ({ url, limit = 5, page, autoplayInterval = 3000 }) => {
                     {/* Loading and Error Messages */}
                     <>
                         {loading && (
-                            <div className="flex justify-center pb-10">
+                            <div className="flex justify-center pb-10 px-3">
                                 {/* Placeholder image while loading */}
                                 <img
                                     src={placeholderImage}
                                     alt="Loading..."
-                                    className="rounded-xl w-[50rem] h-96 object-cover flex-shrink-0"
+                                    className="!rounded-xl md:w-[50rem] md:h-[25rem] w-full h-80 object-cover"
                                 />
                             </div>
                         )}
@@ -97,21 +95,20 @@ const Slider = ({ url, limit = 5, page, autoplayInterval = 3000 }) => {
                     {/* Slider Logic */}
                     {!loading && images.length > 0 && (
                         <div className="relative">
-                            <div className="flex justify-center items-center">
-                                <BsArrowLeftCircleFill onClick={handlePrevious} className="text-3xl cursor-pointer flex-shrink-0 text-[#017fa5] mx-2" />
+                            <div className="md:flex justify-center items-center">
+                                <BsArrowLeftCircleFill onClick={handlePrevious} className="text-3xl md:block hidden cursor-pointer flex-shrink-0 text-[#017fa5] mx-2" />
 
                                 {/* Display only current slide */}
                                 {images.map((image, index) => (
-                                    <div key={image.id} className={`${currentSlide === index ? 'block' : 'hidden'} transition-opacity duration-500`}>
+                                    <div key={image.id} className={`${currentSlide === index ? 'block' : 'hidden'} px-3 md:px-0 transition-opacity duration-500`}>
                                         <img
                                             src={image.download_url}
                                             alt={`Slide ${index}`}
-                                            className="rounded-xl w-[50rem] h-96 object-cover flex-shrink-0"
+                                            className="rounded-xl md:w-[50rem] md:h-[25rem] w-full h-80  object-cover flex-shrink-0"
                                         />
                                     </div>
                                 ))}
-
-                                <BsArrowRightCircleFill onClick={handleNext} className="text-3xl cursor-pointer flex-shrink-0 text-[#017fa5] mx-2" />
+                                <BsArrowRightCircleFill onClick={handleNext} className="text-3xl cursor-pointer flex-shrink-0 md:block hidden text-[#017fa5] mx-2" />
                             </div>
 
                             {/* Slide Indicator Dots */}
@@ -120,9 +117,20 @@ const Slider = ({ url, limit = 5, page, autoplayInterval = 3000 }) => {
                                     <button
                                         key={index}
                                         onClick={() => setCurrentSlide(index)}
-                                        className={`w-2 h-2 rounded-full ${currentSlide === index ? 'bg-[#017fa5]' : 'bg-gray-400'} transition-colors duration-300`}
+                                        className={`w-3 h-3 rounded-full ${currentSlide === index ? 'bg-[#017fa5]' : 'bg-gray-400'} transition-colors duration-300`}
                                     />
                                 ))}
+                            </div>
+                            {/* Mobile Navigation */}
+                            <div className='md:hidden block'>
+                                <div className='flex justify-center pt-5'>
+                                    <div>
+                                        <BsArrowLeftCircleFill onClick={handlePrevious} className="text-3xl md:hidden block cursor-pointer flex-shrink-0 text-[#017fa5] mx-2" />
+                                    </div>
+                                    <div>
+                                        <BsArrowRightCircleFill onClick={handleNext} className="text-3xl cursor-pointer flex-shrink-0 md:hidden block text-[#017fa5] mx-2" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
