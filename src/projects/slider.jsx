@@ -93,7 +93,7 @@ const Slider = ({ url, limit = 5, page }) => {
                     </>
 
                     {/* Slider Logic */}
-                    {!loading && images.length > 0 && (
+                    {images.length > 0 && (
                         <div className="relative">
                             <div className="md:flex justify-center items-center">
                                 <BsArrowLeftCircleFill onClick={handlePrevious} className="text-3xl md:block hidden cursor-pointer flex-shrink-0 text-[#017fa5] mx-2" />
