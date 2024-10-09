@@ -8,8 +8,9 @@ const Slider = ({ url, limit = 5, page }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [errorMessage, setErrorMessage] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [imageLoadingStatus, setImageLoadingStatus] = useState({});
 
-    const placeholderImage = "https://via.placeholder.com/800x600?text=Image is loading...";
+    const placeholderImage = "https://via.placeholder.com/800x600?text=Image+is+loading...";
 
     const fetchImages = async (getUrl) => {
         try {
@@ -48,6 +49,22 @@ const Slider = ({ url, limit = 5, page }) => {
 
     const handleNext = () => {
         setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
+    };
+
+    // Handle image loading status and errors
+    const handleImageLoad = (index) => {
+        setImageLoadingStatus((prevState) => ({
+            ...prevState,
+            [index]: true, // Mark this image as loaded
+        }));
+    };
+
+    const handleImageError = (index, e) => {
+        e.target.src = placeholderImage; // Set placeholder if image fails to load
+        setImageLoadingStatus((prevState) => ({
+            ...prevState,
+            [index]: false, // Keep the placeholder for failed images
+        }));
     };
 
     return (
@@ -102,9 +119,11 @@ const Slider = ({ url, limit = 5, page }) => {
                                 {images.map((image, index) => (
                                     <div key={image.id} className={`${currentSlide === index ? 'block' : 'hidden'} px-3 md:px-0 transition-opacity duration-500`}>
                                         <img
-                                            src={image.download_url}
+                                            src={imageLoadingStatus[index] ? image.download_url : placeholderImage} // Show placeholder until image loads
                                             alt={`Slide ${index}`}
-                                            className="rounded-xl md:w-[50rem] md:h-[25rem] w-full h-80  object-cover flex-shrink-0"
+                                            className="rounded-xl md:w-[50rem] md:h-[25rem] w-full h-80 object-cover"
+                                            onLoad={() => handleImageLoad(index)} // Mark image as loaded
+                                            onError={(e) => handleImageError(index, e)} // Show placeholder if image fails
                                         />
                                     </div>
                                 ))}
@@ -121,9 +140,10 @@ const Slider = ({ url, limit = 5, page }) => {
                                     />
                                 ))}
                             </div>
+
                             {/* Mobile Navigation */}
-                            <div className='md:hidden block'>
-                                <div className='flex justify-center pt-5'>
+                            <div className="md:hidden block">
+                                <div className="flex justify-center pt-5">
                                     <div>
                                         <BsArrowLeftCircleFill onClick={handlePrevious} className="text-3xl md:hidden block cursor-pointer flex-shrink-0 text-[#017fa5] mx-2" />
                                     </div>
