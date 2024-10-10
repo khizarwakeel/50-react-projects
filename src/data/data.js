@@ -23,7 +23,7 @@ export const projectsData = [
         link: "/slider"
     },
     {
-        thumbnail: '/assets/placeholder.jpg',
+        thumbnail: '/assets/loadmore.JPG',
         title: "Load More Data",
         link: "/load-more-data"
     },
