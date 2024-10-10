@@ -33,15 +33,15 @@ const Slider = ({ url, limit = 5, page }) => {
         }
     }, [url]);
 
-    useEffect(() => {
-        if (images.length > 0) {
-            const interval = setInterval(() => {
-                handleNext();
-            }, 10000);
+    // useEffect(() => {
+    //     if (images.length > 0) {
+    //         const interval = setInterval(() => {
+    //             handleNext();
+    //         }, 10000);
 
-            return () => clearInterval(interval);
-        }
-    }, [currentSlide, images]);
+    //         return () => clearInterval(interval);
+    //     }
+    // }, [currentSlide, images]);
 
     const handlePrevious = () => {
         setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
