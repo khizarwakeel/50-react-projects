@@ -11,8 +11,8 @@ const Home = () => {
                 </div>
                 <div className="grid lg:grid-cols-3 lg:gap-12 md:gap-16 gap-10 md:grid-cols-2 grid-cols-1 md:pb-10 pb-7">
                     {projectsData.map((item, index) => (
-                        <div>
-                            <div key={index} className="relative group">
+                        <div key={index}>
+                            <div className="relative group">
                                 <Link to={item.link} className="relative block border border-gray-200 rounded-xl shadow-xl">
                                     <img
                                         src={item.thumbnail}
