@@ -8,6 +8,7 @@ import Accordian from './projects/accordian';
 import RandomColor from './projects/randomColor';
 import Rating from './projects/rating';
 import Slider from './projects/slider';
+import LoadMoreData from './projects/loadMoreData';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/random-color" element={<RandomColor />} />
             <Route path="/rating" element={<Rating noOfStars={5} />} />
             <Route path="/slider" element={<Slider url={'https://picsum.photos/v2/list'} limit={10} page={22} />} />
+            <Route path="/load-more-data" element={<LoadMoreData />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

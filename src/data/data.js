@@ -22,6 +22,11 @@ export const projectsData = [
         title: "Slider",
         link: "/slider"
     },
+    {
+        thumbnail: '/assets/placeholder.jpg',
+        title: "Load More Data",
+        link: "/load-more-data"
+    },
 ]
 
 // Accordian Data
