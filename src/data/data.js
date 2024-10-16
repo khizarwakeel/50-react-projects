@@ -27,6 +27,11 @@ export const projectsData = [
         title: "Load More Data",
         link: "/load-more-data"
     },
+    {
+        thumbnail: '/assets/placeholder.jpg',
+        title: "Tree View",
+        link: "/tree-view"
+    },
 ]
 
 // Accordian Data
@@ -53,3 +58,64 @@ export const accordianData = [
         answer: 'A chatbot is an AI-driven software application that simulates human conversation through text or voice interactions. It works by using natural language processing (NLP) to understand user input and generate responses based on pre-trained models, like GPT. Chatbots are commonly used in customer service, virtual assistants, and conversational AI platforms.'
     },
 ]
+
+// Tree Data on Sidebar
+
+export const menusData = [
+    {
+        label: "Home",
+        to: "/",
+    },
+    {
+        label: "Profile",
+        to: "/profile",
+        children: [
+            {
+                label: "Details",
+                to: "details",
+                children: [
+                    {
+                        label: "Location",
+                        to: "location",
+                        children: [
+                            {
+                                label: "City",
+                                to: "city",
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        label: "Settings",
+        to: "/settings",
+        children: [
+            {
+                label: "Account",
+                to: "account",
+            },
+            {
+                label: "Security",
+                to: "security",
+                children: [
+                    {
+                        label: "Login",
+                        to: "login",
+                    },
+                    {
+                        label: "Register",
+                        to: "register",
+                        children: [
+                            {
+                                label: 'Random data',
+                                to: ''
+                            }
+                        ]
+                    },
+                ],
+            },
+        ],
+    },
+];
