@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import Wrapper from '../../components/shared/wrapper'
+import MenuList from "./menuList";
 
-const TreeView = ({menus = []}) => {
+const TreeView = ({ menus = [] }) => {
     return (
         <section className="md:mb-20 mb-10">
             <Wrapper>
@@ -24,6 +25,10 @@ const TreeView = ({menus = []}) => {
                 {/* Main Data */}
                 <div className="text-center mt-10">
                     <h1 className="text-4xl">Tree View Data Menu</h1>
+                </div>
+                <div className="bg-gray-200 md:w-80 md:h-[90vh] w-full mt-10 px-6 pt-10">
+                    <h2 className="md:text-center pb-8 text-2xl">Sidebar Menu</h2>
+                    <MenuList list={menus} />
                 </div>
             </Wrapper>
         </section>
