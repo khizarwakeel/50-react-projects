@@ -9,7 +9,7 @@ import RandomColor from './projects/randomColor';
 import Rating from './projects/rating';
 import Slider from './projects/slider';
 import LoadMoreData from './projects/loadMoreData';
-import TreeView from './projects/treeView';
+import TreeView from './projects/tree-view/treeView';
 
 const App = () => {
   return (

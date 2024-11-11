@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom"
-import Wrapper from '../components/shared/wrapper'
-import { menusData } from "../data/data"
+import Wrapper from '../../components/shared/wrapper'
 
-const TreeView = () => {
+const TreeView = ({menus = []}) => {
     return (
         <section className="md:mb-20 mb-10">
             <Wrapper>
