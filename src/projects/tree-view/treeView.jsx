@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Wrapper from '../../components/shared/wrapper'
 import MenuList from "./menuList";
 
 const TreeView = ({ menus = [] }) => {
+    const { treePage } = useParams();
+    let fullWord;
+
+    if (treePage) {
+        let treePageAlt = treePage.charAt(0).toUpperCase();
+        let restPageWord = treePage.slice(1);
+        fullWord = treePageAlt + restPageWord;
+    }
     return (
         <section className="md:mb-20 mb-10">
             <Wrapper>
@@ -24,11 +32,24 @@ const TreeView = ({ menus = [] }) => {
                 </div>
                 {/* Main Data */}
                 <div className="text-center mt-10">
-                    <h1 className="text-4xl">Tree View Data Menu</h1>
+                    <h1 className="md:text-4xl text-2xl">Tree View Data Menu</h1>
                 </div>
-                <div className="bg-gray-200 md:w-80 md:h-[90vh] w-full mt-10 px-6 pt-10">
-                    <h2 className="md:text-center pb-8 text-2xl">Sidebar Menu</h2>
-                    <MenuList list={menus} />
+                <div className="flex items-center md:mt-14 mt-8">
+                    <div className="bg-gray-300 md:w-80 h-screen md:max-h-[35rem] w-full md:px-6 px-4 pb-5">
+                        <h2 className="md:text-center pb-8 md:text-2xl text-xl  pt-10">Sidebar Menu</h2>
+                        <div className="mb-10 duration-1000">
+                            <MenuList list={menus} />
+                        </div>
+                    </div>
+                    <div className="bg-gray-200 h-screen md:max-h-[35rem] w-full">
+                        {
+                            treePage && (
+                                <div className="text-center mt-10">
+                                    <h1 className="md:text-2xl text-xl">{fullWord} Page</h1>
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
             </Wrapper>
         </section>

@@ -4,7 +4,7 @@ import Button from "./Button";
 
 const Header = () => {
     return (
-        <header className="bg-white shadow-md py-4">
+        <header className="bg-white shadow-md py-4 sticky top-0 right-0 left-0 z-50">
             <Wrapper>
                 <div className="flex justify-between items-center">
                     <div className="flex items-center">
@@ -20,7 +20,7 @@ const Header = () => {
                     <div>
                         <Link to={'https://khizarwakeel.vercel.app'} target="_blank">
                             <Button>
-                            Khizar Wakeel
+                                Khizar Wakeel
                             </Button>
                         </Link>
                     </div>

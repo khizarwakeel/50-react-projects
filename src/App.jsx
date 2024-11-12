@@ -26,6 +26,7 @@ const App = () => {
             <Route path="/slider" element={<Slider url={'https://picsum.photos/v2/list'} limit={10} page={22} />} />
             <Route path="/load-more-data" element={<LoadMoreData />} />
             <Route path="/tree-view" element={<TreeView menus={menusData} />} />
+            <Route path="/tree-view/:treePage" element={<TreeView menus={menusData} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

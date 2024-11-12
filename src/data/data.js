@@ -28,7 +28,7 @@ export const projectsData = [
         link: "/load-more-data"
     },
     {
-        thumbnail: '/assets/placeholder.jpg',
+        thumbnail: '/assets/sidebar.JPG',
         title: "Tree View",
         link: "/tree-view"
     },
@@ -64,23 +64,23 @@ export const accordianData = [
 export const menusData = [
     {
         label: "Home",
-        to: "/",
+        to: "/tree-view/home",
     },
     {
         label: "Profile",
-        to: "/profile",
+        to: "/tree-view/profile",
         children: [
             {
                 label: "Details",
-                to: "details",
+                to: "/tree-view/details",
                 children: [
                     {
                         label: "Location",
-                        to: "location",
+                        to: "/tree-view/location",
                         children: [
                             {
                                 label: "City",
-                                to: "city",
+                                to: "/tree-view/city",
                             },
                         ],
                     },
@@ -90,27 +90,27 @@ export const menusData = [
     },
     {
         label: "Settings",
-        to: "/settings",
+        to: "/tree-view/settings",
         children: [
             {
                 label: "Account",
-                to: "account",
+                to: "/tree-view/account",
             },
             {
                 label: "Security",
-                to: "security",
+                to: "/tree-view/security",
                 children: [
                     {
                         label: "Login",
-                        to: "login",
+                        to: "/tree-view/login",
                     },
                     {
                         label: "Register",
-                        to: "register",
+                        to: "/tree-view/register",
                         children: [
                             {
                                 label: 'Random data',
-                                to: ''
+                                to: '/tree-view/random-data'
                             }
                         ]
                     },

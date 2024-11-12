@@ -2,7 +2,7 @@ import MenuItem from "./menuItem";
 
 const MenuList = ({ list = [] }) => {
     return (
-        <ul>
+        <ul className="duration-500">
             {
                 list && list.length ? list.map((listItem, index) => (
                     <MenuItem key={index} item={listItem} />
