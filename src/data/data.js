@@ -109,8 +109,8 @@ export const menusData = [
                         to: "/tree-view/register",
                         children: [
                             {
-                                label: 'Random data',
-                                to: '/tree-view/random-data'
+                                label: 'Gallery',
+                                to: '/tree-view/gallery'
                             }
                         ]
                     },
